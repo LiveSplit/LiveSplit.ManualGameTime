@@ -72,5 +72,13 @@ namespace LiveSplit.UI.Components
         public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
         }
+
+        public override void Dispose()
+        {
+            if (GameTimeForm != null && !GameTimeForm.IsDisposed)
+                GameTimeForm.Close();
+            CurrentState.OnStart -= state_OnStart;
+            CurrentState.OnReset -= state_OnReset;
+        }
     }
 }
