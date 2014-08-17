@@ -37,7 +37,7 @@ namespace LiveSplit.UI.Components
             CurrentState = state;
         }
 
-        void state_OnReset(object sender, EventArgs e)
+        void state_OnReset(object sender, TimerPhase e)
         {
             GameTimeForm.Close();
         }
