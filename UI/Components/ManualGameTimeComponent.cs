@@ -45,7 +45,7 @@ namespace LiveSplit.UI.Components
         void state_OnStart(object sender, EventArgs e)
         {
             GameTimeForm = new ShitSplitter(CurrentState, Settings);
-            GameTimeForm.Show();
+            CurrentState.Form.Invoke(new Action(() => GameTimeForm.Show()));
             CurrentState.IsGameTimePaused = true;
             CurrentState.SetGameTime(TimeSpan.Zero);
         }
