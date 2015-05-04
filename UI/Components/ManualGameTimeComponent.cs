@@ -22,6 +22,7 @@ namespace LiveSplit.UI.Components
         public GraphicsCache Cache { get; set; }
         protected LiveSplitState CurrentState { get; set; }
         public Form GameTimeForm { get; set; }
+        protected Point PreviousLocation { get; set; } 
 
         public override string ComponentName
         {
@@ -40,12 +41,15 @@ namespace LiveSplit.UI.Components
         void state_OnReset(object sender, TimerPhase e)
         {
             GameTimeForm.Close();
+            PreviousLocation = GameTimeForm.Location;
         }
 
         void state_OnStart(object sender, EventArgs e)
         {
             GameTimeForm = new ShitSplitter(CurrentState, Settings);
-            CurrentState.Form.Invoke(new Action(() => GameTimeForm.Show()));
+            CurrentState.Form.Invoke(new Action(() => GameTimeForm.Show(CurrentState.Form)));
+            if (!PreviousLocation.IsEmpty)
+                GameTimeForm.Location = PreviousLocation;
             CurrentState.IsGameTimePaused = true;
             CurrentState.SetGameTime(TimeSpan.Zero);
         }
