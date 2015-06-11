@@ -28,35 +28,18 @@ namespace LiveSplit.UI.Components
             rdoSegmentTimes.DataBindings.Add("Checked", this, "UseSegmentTimes", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
-        private T ParseEnum<T>(XmlElement element)
-        {
-            return (T)Enum.Parse(typeof(T), element.InnerText);
-        }
-
         public void SetSettings(XmlNode node)
         {
             var element = (XmlElement)node;
-            Version version;
-            if (element["Version"] != null)
-                version = Version.Parse(element["Version"].InnerText);
-            else
-                version = new Version(1, 0, 0, 0);
-            UseSegmentTimes = Boolean.Parse(element["UseSegmentTimes"].InnerText);
+            UseSegmentTimes = SettingsHelper.ParseBool(element["UseSegmentTimes"]);
         }
 
         public XmlNode GetSettings(XmlDocument document)
         {
             var parent = document.CreateElement("Settings");
-            parent.AppendChild(ToElement(document, "Version", "1.4"));
-            parent.AppendChild(ToElement(document, "UseSegmentTimes", UseSegmentTimes));
+            parent.AppendChild(SettingsHelper.ToElement(document, "Version", "1.4"));
+            parent.AppendChild(SettingsHelper.ToElement(document, "UseSegmentTimes", UseSegmentTimes));
             return parent;
-        }
-
-        private XmlElement ToElement<T>(XmlDocument document, String name, T value)
-        {
-            var element = document.CreateElement(name);
-            element.InnerText = value.ToString();
-            return element;
         }
     }
 }
