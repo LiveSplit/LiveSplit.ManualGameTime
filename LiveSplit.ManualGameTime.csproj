@@ -80,8 +80,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UI\Components\ManualGameTimeSettings.ja-JP.resx">
+      <DependentUpon>ManualGameTimeSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Components\ManualGameTimeSettings.resx">
       <DependentUpon>ManualGameTimeSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\ShitSplitter.ja-JP.resx">
+      <DependentUpon>ShitSplitter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Components\ShitSplitter.resx">
       <DependentUpon>ShitSplitter.cs</DependentUpon>
