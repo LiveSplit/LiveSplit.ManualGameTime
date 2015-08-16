@@ -80,5 +80,10 @@ namespace LiveSplit.UI.Components
             CurrentState.OnStart -= state_OnStart;
             CurrentState.OnReset -= state_OnReset;
         }
+
+        public int GetSettingsHashCode()
+        {
+            return Settings.GetSettingsHashCode();
+        }
     }
 }

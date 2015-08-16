@@ -37,9 +37,19 @@ namespace LiveSplit.UI.Components
         public XmlNode GetSettings(XmlDocument document)
         {
             var parent = document.CreateElement("Settings");
-            parent.AppendChild(SettingsHelper.ToElement(document, "Version", "1.4"));
-            parent.AppendChild(SettingsHelper.ToElement(document, "UseSegmentTimes", UseSegmentTimes));
+            CreateSettingsNode(document, parent);
             return parent;
+        }
+
+        public int GetSettingsHashCode()
+        {
+            return CreateSettingsNode(null, null);
+        }
+
+        private int CreateSettingsNode(XmlDocument document, XmlElement parent)
+        {
+            return SettingsHelper.CreateSetting(document, parent, "Version", "1.4") ^
+            SettingsHelper.CreateSetting(document, parent, "UseSegmentTimes", UseSegmentTimes);
         }
     }
 }
