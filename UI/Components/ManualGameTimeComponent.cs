@@ -1,16 +1,7 @@
 ﻿using LiveSplit.ManualGameTime.UI.Components;
 using LiveSplit.Model;
-using LiveSplit.Model.Comparisons;
-using LiveSplit.TimeFormatters;
-using LiveSplit.UI.Components;
-using LiveSplit.UI.Components.AutoSplit;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.UI.Components
@@ -24,10 +15,7 @@ namespace LiveSplit.UI.Components
         public Form GameTimeForm { get; set; }
         protected Point PreviousLocation { get; set; } 
 
-        public override string ComponentName
-        {
-            get { return "Manual Game Time"; }
-        }
+        public override string ComponentName => "Manual Game Time";
 
         public ManualGameTimeComponent(LiveSplitState state)
         {
