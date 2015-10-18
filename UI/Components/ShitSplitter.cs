@@ -26,8 +26,14 @@ namespace LiveSplit.ManualGameTime.UI.Components
             {
                 try
                 {
-                    var parsedTimeSpan = TimeSpanParser.Parse(txtGameTime.Text);
-                    var newGameTime = parsedTimeSpan + (Settings.UseSegmentTimes ? Model.CurrentState.CurrentTime.GameTime : TimeSpan.Zero);
+                    var timeSpans = txtGameTime.Text.Replace(" ", "").Split('+');
+                    var totalTime = TimeSpan.Zero;
+                    foreach (var time in timeSpans)
+                    {
+                        totalTime += TimeSpanParser.Parse(time);
+                    }
+
+                    var newGameTime = totalTime + (Settings.UseSegmentTimes ? Model.CurrentState.CurrentTime.GameTime : TimeSpan.Zero);
                     Model.CurrentState.SetGameTime(newGameTime);
                     Model.Split();
                     txtGameTime.Text = "";
