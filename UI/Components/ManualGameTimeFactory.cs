@@ -23,6 +23,6 @@ namespace LiveSplit.Delta
 
         public string UpdateURL => "http://livesplit.org/update/";
 
-        public Version Version => Version.Parse("1.6");
+        public Version Version => Version.Parse("1.6.3");
     }
 }
