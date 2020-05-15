@@ -39,6 +39,8 @@ namespace LiveSplit.ManualGameTime.UI.Components
                     txtGameTime.Text = "";
                 }
                 catch { }
+
+                e.Handled = true;
             }
         }
     }
