@@ -27,14 +27,14 @@ public partial class ShitSplitter : Form
         {
             try
             {
-                var timeSpans = txtGameTime.Text.Replace(" ", "").Split('+');
-                var totalTime = TimeSpan.Zero;
-                foreach (var time in timeSpans)
+                string[] timeSpans = txtGameTime.Text.Replace(" ", "").Split('+');
+                TimeSpan totalTime = TimeSpan.Zero;
+                foreach (string time in timeSpans)
                 {
                     totalTime += TimeSpanParser.Parse(time);
                 }
 
-                var newGameTime = totalTime + (Settings.UseSegmentTimes ? Model.CurrentState.CurrentTime.GameTime : TimeSpan.Zero);
+                TimeSpan? newGameTime = totalTime + (Settings.UseSegmentTimes ? Model.CurrentState.CurrentTime.GameTime : TimeSpan.Zero);
                 Model.CurrentState.SetGameTime(newGameTime);
                 Model.Split();
                 txtGameTime.Text = "";

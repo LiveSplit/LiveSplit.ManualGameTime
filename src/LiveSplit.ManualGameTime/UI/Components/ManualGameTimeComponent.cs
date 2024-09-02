@@ -30,7 +30,7 @@ public class ManualGameTimeComponent : LogicComponent
 
     private void State_OnUndoSplit(object sender, EventArgs e)
     {
-        var curIndex = CurrentState.CurrentSplitIndex;
+        int curIndex = CurrentState.CurrentSplitIndex;
         CurrentState.SetGameTime(curIndex > 0 ? CurrentState.Run[curIndex - 1].SplitTime.GameTime : TimeSpan.Zero);
     }
 
