@@ -34,13 +34,13 @@ public class ManualGameTimeComponent : LogicComponent
         CurrentState.SetGameTime(curIndex > 0 ? CurrentState.Run[curIndex - 1].SplitTime.GameTime : TimeSpan.Zero);
     }
 
-    void state_OnReset(object sender, TimerPhase e)
+    private void state_OnReset(object sender, TimerPhase e)
     {
         GameTimeForm.Close();
         PreviousLocation = GameTimeForm.Location;
     }
 
-    void state_OnStart(object sender, EventArgs e)
+    private void state_OnStart(object sender, EventArgs e)
     {
         GameTimeForm = new ShitSplitter(CurrentState, Settings);
         CurrentState.Form.Invoke(new Action(() => GameTimeForm.Show(CurrentState.Form)));
