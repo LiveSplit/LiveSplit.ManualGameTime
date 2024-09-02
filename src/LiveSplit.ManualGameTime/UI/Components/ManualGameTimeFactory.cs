@@ -16,7 +16,10 @@ public class ManualGameTimeFactory : IComponentFactory
 
     public ComponentCategory Category => ComponentCategory.Control;
 
-    public IComponent Create(LiveSplitState state) => new ManualGameTimeComponent(state);
+    public IComponent Create(LiveSplitState state)
+    {
+        return new ManualGameTimeComponent(state);
+    }
 
     public string UpdateName => ComponentName;
 
