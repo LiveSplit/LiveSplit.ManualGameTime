@@ -45,7 +45,10 @@ public class ManualGameTimeComponent : LogicComponent
         GameTimeForm = new ShitSplitter(CurrentState, Settings);
         CurrentState.Form.Invoke(new Action(() => GameTimeForm.Show(CurrentState.Form)));
         if (!PreviousLocation.IsEmpty)
+        {
             GameTimeForm.Location = PreviousLocation;
+        }
+
         CurrentState.IsGameTimePaused = true;
         CurrentState.SetGameTime(TimeSpan.Zero);
     }
@@ -72,7 +75,10 @@ public class ManualGameTimeComponent : LogicComponent
     public override void Dispose()
     {
         if (GameTimeForm != null && !GameTimeForm.IsDisposed)
+        {
             GameTimeForm.Close();
+        }
+
         CurrentState.OnStart -= state_OnStart;
         CurrentState.OnReset -= state_OnReset;
         CurrentState.OnUndoSplit -= State_OnUndoSplit;
