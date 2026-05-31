@@ -1,9 +1,8 @@
-﻿using System;
+﻿using LiveSplit.ManualGameTime.UI.Components;
+using LiveSplit.Model;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-
-using LiveSplit.ManualGameTime.UI.Components;
-using LiveSplit.Model;
 
 namespace LiveSplit.UI.Components;
 
@@ -43,7 +42,7 @@ public class ManualGameTimeComponent : LogicComponent
     private void state_OnStart(object sender, EventArgs e)
     {
         GameTimeForm = new ShitSplitter(CurrentState, Settings);
-        CurrentState.Form.Invoke(new Action(() => GameTimeForm.Show(CurrentState.Form)));
+        CurrentState.Form.Invoke(() => GameTimeForm.Show(CurrentState.Form));
         if (!PreviousLocation.IsEmpty)
         {
             GameTimeForm.Location = PreviousLocation;
@@ -74,7 +73,7 @@ public class ManualGameTimeComponent : LogicComponent
 
     public override void Dispose()
     {
-        if (GameTimeForm != null && !GameTimeForm.IsDisposed)
+        if (GameTimeForm is { IsDisposed: false })
         {
             GameTimeForm.Close();
         }

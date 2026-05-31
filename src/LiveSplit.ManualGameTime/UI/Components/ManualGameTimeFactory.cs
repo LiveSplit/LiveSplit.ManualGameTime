@@ -1,8 +1,7 @@
-﻿using System;
-
-using LiveSplit.Delta;
+﻿using LiveSplit.Delta;
 using LiveSplit.Model;
 using LiveSplit.UI.Components;
+using System;
 
 [assembly: ComponentFactory(typeof(ManualGameTimeFactory))]
 
